@@ -11,7 +11,7 @@ array_walk($process, function (&$value) {
     $value = null;
 });
 $process->start();
-
+Swoole\Process::wait();
 ?>
 --EXPECTF--
 Fatal error: Swoole\Process::start(): Illegal callback function of Swoole\Process in %s

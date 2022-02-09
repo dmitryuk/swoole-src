@@ -39,8 +39,9 @@ class Process6 extends AbstractProcess
     }
 }
 
-(new Process6())->start();
-
+$process = new Process6();
+$process->start();
+Swoole\Process::wait();
 ?>
 --EXPECTF--
 Fatal error: Uncaught Error: Call to undefined function AAAA() in %s:%d

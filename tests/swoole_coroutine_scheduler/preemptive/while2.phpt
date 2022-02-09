@@ -1,14 +1,14 @@
 --TEST--
 swoole_coroutine_scheduler/preemptive: while without opcache enable
 --SKIPIF--
-<?php  
+<?php
 require __DIR__ . '/../../include/skipif.inc';
 ?>
 --FILE--
 <?php
 require __DIR__ . '/../../include/bootstrap.php';
 
-$max_msec = 10;
+$max_msec = 14;
 co::set(['enable_preemptive_scheduler' => true]);
 $default = 10;
 $start = microtime(1);
