@@ -21,20 +21,21 @@ $lock->lock();
 $process1 = new Process(function ($p) use ($lock, $fp) {
     fwrite($fp, "[Child 1] Wait Lock\n");
     $lock->lock();
-    usleep(10);
+    usleep(50);
     fwrite($fp, "[Child 1] Get Lock\n");
     $lock->unlock();
     fwrite($fp, "[Child 1] exit\n");
 });
-$process1->start();
 
 $process2 = new Process(function ($p) use ($lock, $fp) {
+    usleep(10);
     fwrite($fp, "[Child 2] Sleep\n");
     sleep(1);
     fwrite($fp, "[Child 2] Release Lock\n");
     $lock->unlock();
     fwrite($fp, "[Child 2] exit\n");
 });
+$process1->start();
 $process2->start();
 
 Process::wait();
